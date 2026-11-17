@@ -69,12 +69,19 @@ export const legalLinks: NavLink[] = [
   { label: "Plan du site", href: "#" },
 ];
 
-/** Réseaux sociaux (icônes dans /public/brand/reseaux). ⚠️ URLs à renseigner. */
+/**
+ * Réseaux sociaux. ⚠️ URLs à renseigner.
+ *
+ * Sobriété : les icônes (fichiers de /public/brand/reseaux, moins de 600 octets
+ * chacun) sont écrites directement dans la page en « data URI » (image encodée
+ * en base64). Résultat : 4 requêtes HTTP en moins sur chaque page.
+ * <Image> de Next accepte ces data URI et ne cherche pas à les optimiser.
+ */
 export const socialLinks = [
-  { label: "LinkedIn", href: "#", icon: "/brand/reseaux/linkedin.png", width: 22, height: 20 },
-  { label: "Instagram", href: "#", icon: "/brand/reseaux/instagram.png", width: 21, height: 20 },
-  { label: "Facebook", href: "#", icon: "/brand/reseaux/facebook.png", width: 12, height: 20 },
-  { label: "YouTube", href: "#", icon: "/brand/reseaux/youtube.png", width: 22, height: 16 },
+  { label: "LinkedIn", href: "#", icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAUCAYAAACJfM0wAAABj0lEQVR4XrWUzStEYRTGfyOUlI+SBaKUZm9rNVkoG03JVmk2/gDFwhop1uYfsLSxnC0pCyVSFhYWNohiMmPUo3OdW+9caq4bz+b0nvfc5z7n681J4j/QFpCOADtABdiD6JwdplhSt6RLSTVJFUkvkm4l5f0+jktt48AlSXVJy05k56qkUlbiuBR1z7nP7SBEd2+ZaxEoOtAXGm7tnDr1ZGwumIoiMA4MAw/AFXAKTAMdgfILYAyYBzqBR6AMnDRl538qeONCmPJyk6cZd5KOJD27ez9UHdfYFDWAXSDntgbcufoZ958B78ACMARMQdSXNfdtx6rDOf4JRhJu0AawBawA50DJP9r0+bfyRGhFnMQAsA70QpSRLdKiB9li9QOzWYjngGsgDxSAe2+u4Qno9hL9WrHNd9UVmrWMu77llaEUqdGqxj1Ae2q2AK2ILfVwOVKjFXFmhGnaYphCm02zdjZYzCQw6o1KPky2IPbNRFPPfA3t3b1JrKy9x6uSPhL+w2B1jxN3r5KKdh8+Qn+KTzWWpBgiogkpAAAAAElFTkSuQmCC", width: 22, height: 20 },
+  { label: "Instagram", href: "#", icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAUCAYAAABiS3YzAAAB4UlEQVR4Xq2UMUhWURTHf1YS4iBtCk5CGmpLIDg4ODgJFjiIqDi5SDg0NEQSoouT4uKQ4C76kQpBg5s46KAIgriJGopJYSESUX857ztXrs/vMz/xD493373n/N85/3PuKZLEfeNBDsI+YA34Ddgfb3pOgFmgPuYpiiItBeaBFuAUWAd+/SeLSuCF27wDRpO1kfrzUVlMRHvxeb51paQNSX8kvUyCdIIaSd8lrRRAOCTpVNKkkxnmYtJuj3I8B6lFMiZpQVJG0oDbrLnPoX/vSNq19SPXo8Tf6VYYBEb87BAS+3ZgAHgPtAEzfn4GPIk17fO/WkpBkn7fW5JUGu23SPomaTu1vy7p2OxCSxUDf4GDqNo9wD7wCpIoApaAYaAaeJurOwLpU+BhZGDtVQOspggDpoEfQN1NpGlY/wW9c8Ei/5evh0OkP1MGO8BXoDaPYxdQ5vJcQyANWmarl0XGSSdTXpaFaWnpmwzXkE6xIrL4ADwD+oFWYBN4DDT7POgFtgrRNKAD6ASOgAYvzCIkhbVBEsMKbR10eU0bJZ1J+lLANY1nQZOk8+AfH3z2Zn9zB+J597ULc2X02UxcAKqAZeDTLUbfc0gkKnc5bH0lUovaruOUp3Jb7El6HWcXD+l7wwU35y1D/mtwBgAAAABJRU5ErkJggg==", width: 21, height: 20 },
+  { label: "Facebook", href: "#", icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAUCAYAAAC58NwRAAAA/ElEQVR4Xt2TMUoEQRBF3xqYCJoZmItX8ABmHsF0gwXB2MDEC+wFPICBkRhoIILZRpvrwmK0ioiYCGZPaqyRpmcQNvXDUHR3/f7/NzUDlWWw0tO8BoyBGbAAnoCT375QKL4d9dEfvKoL9Uv9VHejr1Y4AraBU2AT2AKugFVgvVGpFG7UD22U7lMp8J57HcI0rcRFYelNvVD324tbhUP1ofDeEgKRY6LuNS+azOdsjsO73Isa65c8Oy8JIR926kyxHiVh3KcQmCcxaomDkhChIlyEDLUy9KV6XIdurdSv1LHZNxp/4r8SYjKHOaEd1KGvgQ3gLOttzRgs+4t+AwH+hPidnhI/AAAAAElFTkSuQmCC", width: 12, height: 20 },
+  { label: "YouTube", href: "#", icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAQCAYAAAAS7Y8mAAABbUlEQVR4XrWUvyuFYRTHPxdZrh+DbHew6CJKEQbKdLPJILPdYjBSt/wZd5BBsstk4goDi9SVBZmQXzFIHZ3XefT0ep68iVNvvfV+z+ec93vO8+REhP+Ihgh0CmgDOoC+gOYN2AOegRNg/5tGO7anV0Rq8vvYFpG84/ngTWOWfYFXOPZeEJGK5S6nwUUReRCRagC0ICIbIgkgBnf5h05TZ94MAq3mVzqGgGngCihHZlIDzmwmSThwiyWcRxIfgSNgCTgGRgO6CyAPjPjgThPeR8C6BQPAItAP7ACVgLYRPpt0HWeNFeDAxCWgGEt04KcMZPVXfR6GpEA3JN4Gw4Ev7WtPRNdu/qrPY8As8JLSNkMyi6pvxSnwCkGw+n4LzJnPu5HiXcDdV0FvN3WHdZf1BGY5GL5m3g7IqsvNeZfQDLDudXMDvP/gvf5+k2mugQl3FnywRgGYBMbtEtI1rI/A1WMdnlq1Baz5ujT4z+ID3rJgzUyXo8cAAAAASUVORK5CYII=", width: 22, height: 16 },
 ];
 
 /** Bureaux (accueil, contact). */
