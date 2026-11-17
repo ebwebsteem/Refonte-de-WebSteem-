@@ -6,7 +6,9 @@ const strapiUrl = process.env.STRAPI_URL ?? "http://localhost:1337";
 const nextConfig: NextConfig = {
   // Build autonome pour le déploiement Passenger (repris de develop)
   output: "standalone",
-  outputFileTracingRoot: __dirname,
+  // process.cwd() plutôt que __dirname : __dirname n'existe pas quand Next
+  // compile ce fichier en module ES (cas du compilateur WebAssembly de secours).
+  outputFileTracingRoot: process.cwd(),
 
   // Nécessaire pour 'use cache' / cacheLife / cacheTag (appels Strapi)
   cacheComponents: true,
