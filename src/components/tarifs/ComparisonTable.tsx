@@ -71,7 +71,7 @@ export function ComparisonTable() {
                         </>
                       ) : (
                         <>
-                          <span aria-hidden="true" className="text-[#8A93A0]">
+                          <span aria-hidden="true" className="text-[#667080]">
                             —
                           </span>
                           <span className="sr-only">Non inclus</span>

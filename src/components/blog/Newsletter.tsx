@@ -58,7 +58,7 @@ export function Newsletter({ tone = "light", idPrefix = "newsletter" }: Newslett
                 autoComplete="email"
                 required
                 placeholder="prenom@entreprise.fr"
-                className={`h-[52px] flex-1 rounded-lg bg-cream px-4 text-base text-ink focus:shadow-[inset_0_0_0_2px_var(--color-navy),0_0_0_4px_#FFD9CC] focus:outline-none lg:h-14 lg:px-[18px] ${
+                className={`h-[52px] flex-1 rounded-lg bg-cream px-4 text-base text-ink placeholder:text-muted focus:shadow-[inset_0_0_0_2px_var(--color-navy),0_0_0_4px_#FFD9CC] focus:outline-none lg:h-14 lg:px-[18px] ${
                   dark ? "" : "shadow-[inset_0_0_0_1.5px_var(--color-navy)]"
                 }`}
               />

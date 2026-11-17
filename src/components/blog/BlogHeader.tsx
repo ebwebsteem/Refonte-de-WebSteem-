@@ -66,7 +66,7 @@ function BlogSearch() {
         name="q"
         type="search"
         placeholder="Ex. : référencement local, boutique en ligne"
-        className="h-[52px] rounded-lg bg-cream px-4 text-base text-ink shadow-[inset_0_0_0_1.5px_var(--color-navy)] focus:shadow-[inset_0_0_0_2px_var(--color-navy),0_0_0_4px_#FFD9CC] focus:outline-none lg:h-14 lg:px-[18px]"
+        className="h-[52px] rounded-lg bg-cream px-4 text-base text-ink placeholder:text-muted shadow-[inset_0_0_0_1.5px_var(--color-navy)] focus:shadow-[inset_0_0_0_2px_var(--color-navy),0_0_0_4px_#FFD9CC] focus:outline-none lg:h-14 lg:px-[18px]"
       />
     </form>
   );

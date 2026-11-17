@@ -17,9 +17,12 @@
   /* Texte principal (bleu nuit) */
   --color-ink: #20304a;
   --color-muted: #4a5568;
-  /* Orange : UNIQUEMENT pour les boutons d'action (CTA) */
-  --color-orange: #fe471f;
-  --color-orange-dark: #e03a12;
+  /* Orange : UNIQUEMENT pour les boutons d'action (CTA).
+   * Accessibilité (WCAG AA) : le texte blanc des boutons doit avoir un
+   * contraste d'au moins 4,5:1. L'orange de la maquette (#fe471f) n'atteint
+   * que 3,4:1 ; #d1360e garde la même teinte en un peu plus foncé (4,95:1). */
+  --color-orange: #d1360e;
+  --color-orange-dark: #b02e0a; /* survol : 6,5:1 */
   /* Orange foncé : liens et sur-titres (contraste suffisant sur fond clair) */
   --color-rust: #b8360e;
   --color-rust-dark: #8e2a0a;
