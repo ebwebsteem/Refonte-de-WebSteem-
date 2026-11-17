@@ -80,8 +80,11 @@ export const exampleImages = {
   ],
 };
 
-/** Portrait provisoire de l'interlocuteur principal (Emmanuel). */
-export const contactPortrait = exampleImages.portraits[0];
+/**
+ * Vraie photo de l'interlocuteur principal (Emmanuel), dans public/equipe/.
+ * Utilisée sur tout le site : accueil, contact, équipe, tarifs, blog, bandeau CTA.
+ */
+export const contactPortrait = "/equipe/emmanuel-bertrand.jpg";
 
 /**
  * Renvoie l'élément n° `index` d'une liste en recommençant au début une fois

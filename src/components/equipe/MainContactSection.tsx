@@ -26,6 +26,7 @@ export function MainContactSection() {
             src={photo}
             alt={`${fullName}, ${role}, dans le bureau de Grenoble.`}
             sizes="(min-width: 1024px) 40vw, 100vw"
+            provisional={false}
           />
         </div>
 

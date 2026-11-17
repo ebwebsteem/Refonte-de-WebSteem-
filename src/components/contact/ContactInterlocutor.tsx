@@ -25,7 +25,7 @@ export function InterlocutorCard() {
       className="flex items-center gap-3.5 rounded-xl bg-white p-4 lg:items-stretch lg:gap-5 lg:rounded-b-none lg:p-5 lg:pb-0"
     >
       <div className="relative h-[108px] w-[88px] flex-none overflow-hidden rounded-xl bg-placeholder lg:h-[188px] lg:w-[150px]">
-        <Photo src={contactPortrait} alt={`Portrait de ${firstName}`} sizes="150px" />
+        <Photo src={contactPortrait} alt={`Portrait de ${firstName}`} sizes="150px" provisional={false} />
       </div>
       <div className="flex flex-col justify-center gap-1 lg:gap-2">
         <p id="interlocuteur" className="text-sm font-semibold text-rust">

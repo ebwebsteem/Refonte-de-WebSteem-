@@ -29,7 +29,7 @@ export function ContactBox({ className = "" }: { className?: string }) {
     <div className={`flex flex-col gap-3 rounded-xl bg-navy p-6 text-white lg:gap-3.5 lg:p-7 ${className}`}>
       {/* Portrait : uniquement sur desktop (absent de la maquette mobile) */}
       <div className="relative hidden size-20 overflow-hidden rounded-full bg-navy-light ring-3 ring-white lg:block [&>span]:hidden">
-        <Photo src={contactPortrait} alt={`Photo de ${fullName}`} sizes="80px" />
+        <Photo src={contactPortrait} alt={`Photo de ${fullName}`} sizes="80px" provisional={false} />
       </div>
       <h2 className="text-[22px] leading-[30px] font-semibold lg:text-2xl lg:leading-8">Une question sur votre site ?</h2>
       <p className="text-[15px] leading-6 lg:text-base lg:leading-[26px]">

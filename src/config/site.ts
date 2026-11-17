@@ -27,7 +27,7 @@ export const siteConfig = {
   contact: {
     firstName: "Emmanuel",
     fullName: "Emmanuel Bertrand",
-    role: "gérant de WebSteem",
+    role: "gérant de WebSteem, webmaster",
   },
   /** ⚠️ Lien de prise de rendez-vous (Calendly, Google Agenda…) à renseigner. */
   bookingUrl: "/contact",

@@ -24,7 +24,7 @@ export function EquipeHero() {
             par son prénom.
           </p>
           <ul className="flex flex-wrap gap-3">
-            {["Grenoble et Saint-Cyr-sur-Mer", "21 personnes, équipe et partenaires"].map((tag) => (
+            {["Grenoble et Saint-Cyr-sur-Mer", "20 personnes, équipe et partenaires"].map((tag) => (
               <li key={tag} className="rounded-lg bg-white px-3.5 py-2 text-sm font-medium lg:text-[15px]">
                 {tag}
               </li>

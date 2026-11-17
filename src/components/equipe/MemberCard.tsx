@@ -40,9 +40,12 @@ export function MemberCard({ member, variant = "team" }: MemberCardProps) {
       >
         <StrapiImage
           media={member.photo}
+          localPhoto={member.localPhoto}
           placeholder={member.placeholder}
           fallbackAlt={`${member.fullName}, ${member.role}.`}
           sizes={isTeam ? "(min-width: 640px) 220px, 96px" : "(min-width: 1024px) 33vw, 96px"}
+          // Portraits carrés dans un cadre plus large : on garde le haut (le visage)
+          className="object-[50%_20%]"
         />
       </div>
 

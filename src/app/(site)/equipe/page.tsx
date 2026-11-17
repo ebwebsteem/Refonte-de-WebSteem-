@@ -3,7 +3,6 @@ import { EquipeHero } from "@/components/equipe/EquipeHero";
 import { MainContactSection } from "@/components/equipe/MainContactSection";
 import { PartnersSection, TeamSection } from "@/components/equipe/TeamSections";
 import { CtaBanner } from "@/components/sections/CtaBanner";
-import { otherPartnersCount } from "@/content/equipe";
 import { getTeamPageMembers } from "@/lib/strapi/team";
 
 export const metadata: Metadata = {
@@ -23,17 +22,14 @@ export const metadata: Metadata = {
  * (cacheComponents n'exige <Suspense> que pour les données NON cachées).
  */
 export default async function EquipePage() {
-  const { team, partners, fromStrapi } = await getTeamPageMembers();
+  const { team, partners } = await getTeamPageMembers();
 
   return (
     <>
       <EquipeHero />
       <MainContactSection />
       {team.length > 0 && <TeamSection members={team} />}
-      {partners.length > 0 && (
-        // Le compteur « 13 autres partenaires » n'a de sens qu'avec les données d'exemple
-        <PartnersSection members={partners} moreCount={fromStrapi ? 0 : otherPartnersCount} />
-      )}
+      {partners.length > 0 && <PartnersSection members={partners} />}
       <CtaBanner
         title="Envie de nous rencontrer ? Autour d'un café ou en visio."
         text="À Grenoble, à Saint-Cyr-sur-Mer ou à distance. Devis gratuit et sans engagement."

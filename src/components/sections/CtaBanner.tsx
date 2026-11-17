@@ -38,7 +38,7 @@ export function CtaBanner({ title, text, withPortrait = false }: CtaBannerProps)
 
           {withPortrait && (
             <div className="relative hidden h-80 overflow-hidden rounded-[14px] bg-navy-light lg:block">
-              <Photo src={contactPortrait} alt={`${firstName}, votre interlocuteur chez WebSteem`} sizes="280px" />
+              <Photo src={contactPortrait} alt={`${firstName}, votre interlocuteur chez WebSteem`} sizes="280px" provisional={false} />
             </div>
           )}
 

@@ -3,7 +3,7 @@
  *
  * Deux sortes de données ici :
  * 1. Les textes fixes de la page (titres, intro) : ils ne changent pas.
- * 2. Des membres D'EXEMPLE (les noms de la maquette). Ils ne servent que de
+ * 2. Les vrais membres (repris de la page Équipe de websteem.com). Ils servent de
  *    REPLI : la page affiche en priorité les membres saisis dans Strapi
  *    (collection « Membre d'équipe »). Voir src/lib/strapi/team.ts.
  *
@@ -11,7 +11,7 @@
  * voulus par la maquette, à compléter avec chaque personne.
  */
 import { siteConfig } from "@/config/site";
-import { contactPortrait, exampleImages, pick } from "@/content/exemples";
+import { contactPortrait } from "@/content/exemples";
 import type { StrapiMedia } from "@/types/strapi";
 
 /**
@@ -41,7 +41,9 @@ export interface TeamCardMember {
   loves?: string;
   /** Photo Strapi (null pour les données d'exemple) */
   photo: StrapiMedia | null;
-  /** Photo provisoire utilisée tant qu'il n'y a pas de photo Strapi */
+  /** Vraie photo locale (public/equipe/), utilisée tant qu'il n'y a pas de photo Strapi */
+  localPhoto?: string;
+  /** Photo provisoire utilisée en dernier recours ("" = aucune) */
   placeholder: string;
 }
 
@@ -70,71 +72,74 @@ export const mainContact = {
 };
 
 /* ------------------------------------------------------------------ */
-/* Membres d'exemple (repli quand Strapi est vide ou éteint)           */
+/* Membres réels (repli quand Strapi est vide ou éteint)               */
 /* ------------------------------------------------------------------ */
 
-/** L'équipe au quotidien (4 personnes sur la maquette). */
+/**
+ * Raccourci pour créer une carte à partir des infos de websteem.com.
+ * `photoFile` = nom du fichier photo rangé dans public/equipe/.
+ */
+function member(
+  fullName: string,
+  role: string,
+  bio: string,
+  photoFile: string,
+  extras: Pick<TeamCardMember, "quote" | "loves"> = {},
+): TeamCardMember {
+  return {
+    firstName: fullName.split(" ")[0],
+    fullName,
+    role,
+    bio,
+    ...extras,
+    photo: null,
+    localPhoto: `/equipe/${photoFile}`,
+    placeholder: "",
+  };
+}
+
+/** L'équipe au quotidien (source : page Équipe de websteem.com). */
 export const fallbackTeam: TeamCardMember[] = [
-  {
-    firstName: "Mélanie",
-    fullName: "Mélanie Blanc Nowak",
-    role: "responsable marketing",
-    bio: "Elle construit avec vous la façon de faire venir des clients : messages, réseaux, actions concrètes.",
-  },
-  {
-    firstName: "Robin",
-    fullName: "Robin Hourtané",
-    role: "développeur web",
-    bio: "Il construit votre site et vérifie que tout fonctionne, sur ordinateur comme sur téléphone.",
-  },
-  {
-    firstName: "Grégory",
-    fullName: "Grégory Beylier",
-    role: "développeur web",
-    bio: "Il donne vie à la maquette : vos pages, vos formulaires, un site rapide et facile à lire.",
-  },
-  {
-    firstName: "Quentin",
-    fullName: "Quentin Blas-Trinidad",
-    role: "développeur full stack",
-    bio: "Il s'occupe de ce qui se passe derrière l'écran : vos données, vos fonctionnalités sur mesure.",
-  },
-].map((member, index) => ({
-  ...member,
-  quote: QUOTE,
-  loves: LOVES,
-  photo: null,
-  // Portraits 1 à 4 (le n° 0 est celui d'Emmanuel)
-  placeholder: pick(exampleImages.portraits, index + 1),
-}));
+  member(
+    "Robin Hourtané",
+    "développeur web",
+    "Chez WebSteem et en BUT Métiers du Multimédia et de l'Internet, 3e année.",
+    "robin-hourtane.jpg",
+  ),
+  member(
+    "Grégory Beylier",
+    "développeur web",
+    "En stage jusqu'en février 2027, en recherche d'un contrat en alternance.",
+    "gregory-beylier.jpg",
+  ),
+  member(
+    "Quentin Blas-Trinidad",
+    "développeur full stack",
+    "En stage jusqu'en février 2027, en recherche d'un contrat en alternance.",
+    "quentin-blas-trinidad.png",
+  ),
+].map((card) => ({ ...card, quote: QUOTE, loves: LOVES }));
 
-/** Les experts partenaires (3 visibles sur la maquette). */
+/**
+ * Les experts partenaires (source : page Équipe de websteem.com).
+ * Pas de « phrase personnelle » ici : 16 cartes avec un texte à compléter
+ * alourdiraient la page. On pourra les ajouter quand on aura les vrais textes.
+ */
 export const fallbackPartners: TeamCardMember[] = [
-  {
-    firstName: "Pierre-Emmanuel",
-    fullName: "Pierre-Emmanuel Manteau",
-    role: "partenaire",
-    bio: "Il crée les applications web sur mesure, quand un site ne suffit plus.",
-  },
-  {
-    firstName: "Déborah",
-    fullName: "Déborah Joly",
-    role: "partenaire",
-    bio: "Elle vous aide à organiser vos outils informatiques pour gagner du temps au quotidien.",
-  },
-  {
-    firstName: "Christophe",
-    fullName: "Christophe Vitiello",
-    role: "partenaire",
-    bio: "Il vous aide à développer vos ventes, avec une démarche commerciale claire.",
-  },
-].map((member, index) => ({
-  ...member,
-  quote: QUOTE,
-  loves: LOVES,
-  photo: null,
-  placeholder: pick(exampleImages.portraits, index + 5),
-}));
-
-/** Nombre de partenaires non affichés (bouton « Rencontrer les 13 autres partenaires »). */
-export const otherPartnersCount = 13;
+  member("Christophe Vitiello", "stratégie marketing & commerciale", "Partenaire pour développer vos ventes et votre efficacité.", "christophe-vitiello.jpg"),
+  member("Corinne Rangod", "experte SEO", "Partenaire en référencement naturel et campagnes SEA.", "corinne-rangod.jpg"),
+  member("Noël Lotito", "expert en stratégie digitale", "Partenaire co-créateur de Tchatbooster.", "noel-lotito.jpg"),
+  member("Laura Marchetti", "communication de marque", "Partenaire pour révéler votre marque et vous démarquer.", "laura-marchetti.jpg"),
+  member("Philippe Napoletano", "concepteur-rédacteur", "Partenaire qui trouvera les mots justes pour toucher votre public.", "philippe-napoletano.jpg"),
+  member("Julie Mendes", "community manager", "Partenaire experte des réseaux sociaux pour entrepreneurs et entreprises locales.", "julie-mendes.jpg"),
+  member("Emilie Tavel", "community manager", "Partenaire experte des réseaux sociaux et de la publicité Meta.", "emilie-tavel.jpg"),
+  member("Marjorie Guinot", "éco-graphiste", "Partenaire pour une communication percutante, éthique et responsable.", "marjorie-guinot.jpg"),
+  member("Florence Galtier", "directrice artistique, graphiste", "Partenaire pour la communication globale, print et webdesign.", "florence-galtier.jpg"),
+  member("Elsi Cluysen", "graphiste", "Partenaire pour le design graphique : logo, identité de marque, illustration…", "elsi-cluysen.jpg"),
+  member("Isabelle Moussu", "directrice artistique", "Partenaire pour accompagner vos projets de communication visuelle.", "isabelle-moussu.jpg"),
+  member("Déborah Joly", "experte en systèmes informatiques", "Partenaire pour la transformation digitale des entreprises.", "deborah-joly.jpg"),
+  member("Erich Zann", "photographe", "Partenaire pour la photographie en milieu professionnel.", "erich-zann.jpg"),
+  member("Christian Morel", "vidéaste", "Partenaire pour vos réalisations audiovisuelles.", "christian-morel.jpg"),
+  member("William Palandre", "consultant Google Ads", "Partenaire pour augmenter votre chiffre d'affaires grâce à Google Ads.", "william-palandre.jpg"),
+  member("Pierre-Emmanuel Manteau", "développement web, data & IA", "Partenaire pour le développement d'applications web sur mesure.", "pierre-emmanuel-manteau.jpg"),
+];

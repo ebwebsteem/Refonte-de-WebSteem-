@@ -11,7 +11,7 @@
  * - Strapi contient des membres → on les affiche (l'équipe gère sa page
  *   elle-même, sans développeur).
  * - Strapi est vide (projet qui démarre) ou éteint → on affiche les
- *   membres d'exemple de src/content/equipe.ts (noms de la maquette),
+ *   vrais membres de src/content/equipe.ts (repris de websteem.com),
  *   pour que la page ne soit jamais vide.
  * ──────────────────────────────────────────────────────────────────────
  */
