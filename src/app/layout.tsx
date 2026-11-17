@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Poppins } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 
 /**
@@ -9,20 +9,15 @@ import "./globals.css";
  * dans le @theme de globals.css.
  *
  * Poppins : police unique de la charte (400 à 700).
- * Fraunces italique : petites touches éditoriales (citations).
+ * Sobriété : pas de version italique ni de 2e police (Fraunces) : elles
+ * n'étaient presque pas utilisées et ajoutaient des fichiers à télécharger.
+ * Les rares textes en italique (citations du blog) utilisent l'italique
+ * calculé par le navigateur.
  */
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
   variable: "--font-poppins",
-  display: "swap",
-});
-
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  style: ["italic"],
-  variable: "--font-fraunces",
   display: "swap",
 });
 
@@ -45,7 +40,7 @@ export const metadata: Metadata = {
  */
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="fr" className={`${poppins.variable} ${fraunces.variable}`}>
+    <html lang="fr" className={poppins.variable}>
       <body>{children}</body>
     </html>
   );

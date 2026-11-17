@@ -33,7 +33,6 @@
 
   /* Polices chargées avec next/font dans app/layout.tsx */
   --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
 }
 
 @layer base {
