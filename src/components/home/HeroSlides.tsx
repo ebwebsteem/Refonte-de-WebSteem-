@@ -8,6 +8,10 @@
  * - pas de défilement automatique (gênant pour la lecture et les lecteurs d'écran) ;
  * - boutons précédent / suivant + une pastille par photo, avec aria-label ;
  * - toutes les photos sont superposées et on joue sur l'opacité (fondu).
+ *
+ * Sobriété : une photo n'est ajoutée à la page (donc téléchargée) qu'à partir
+ * du moment où elle est demandée. Au chargement, seule la 1re est téléchargée ;
+ * la suivante est préparée au survol des boutons, pour que le fondu reste fluide.
  */
 import Image from "next/image";
 import { useState } from "react";
@@ -17,29 +21,50 @@ type Slide = { src: string; alt: string };
 
 export function HeroSlides({ slides }: { slides: Slide[] }) {
   const [current, setCurrent] = useState(0);
+  // Index des photos déjà affichées ou préparées (au départ : la 1re seulement)
+  const [loaded, setLoaded] = useState<number[]>([0]);
   const count = slides.length;
 
   // Modulo : après la dernière photo on revient à la première (et inversement)
-  const go = (index: number) => setCurrent((index + count) % count);
+  const wrap = (index: number) => (index + count) % count;
+  const prepare = (index: number) =>
+    setLoaded((list) => (list.includes(wrap(index)) ? list : [...list, wrap(index)]));
+  const go = (index: number) => {
+    prepare(index);
+    setCurrent(wrap(index));
+  };
+  // Au survol / focus des commandes : on précharge les photos voisines
+  const prepareNeighbours = () => {
+    prepare(current - 1);
+    prepare(current + 1);
+  };
 
   return (
     <>
-      {slides.map((slide, index) => (
-        <Image
-          key={slide.src}
-          src={slide.src}
-          alt={index === current ? slide.alt : ""}
-          fill
-          // Seule la première photo est préchargée : c'est elle qui s'affiche au chargement
-          preload={index === 0}
-          sizes="(min-width: 1440px) 1376px, 100vw"
-          className={`object-cover transition-opacity duration-400 ease-out ${index === current ? "opacity-100" : "opacity-0"}`}
-          aria-hidden={index !== current}
-        />
-      ))}
+      {slides.map((slide, index) => {
+        // Photo jamais demandée : rien dans la page, donc rien de téléchargé
+        if (!loaded.includes(index)) return null;
+        return (
+          <Image
+            key={slide.src}
+            src={slide.src}
+            alt={index === current ? slide.alt : ""}
+            fill
+            // Seule la première photo est préchargée : c'est elle qui s'affiche au chargement
+            preload={index === 0}
+            sizes="(min-width: 1440px) 1376px, 100vw"
+            className={`object-cover transition-opacity duration-400 ease-out ${index === current ? "opacity-100" : "opacity-0"}`}
+            aria-hidden={index !== current}
+          />
+        );
+      })}
 
       {/* Commandes du carrousel : en haut à droite sur mobile, en bas à droite sur desktop */}
-      <div className="absolute top-2 right-2 z-10 flex items-center gap-1 lg:top-auto lg:right-8 lg:bottom-8">
+      <div
+        className="absolute top-2 right-2 z-10 flex items-center gap-1 lg:top-auto lg:right-8 lg:bottom-8"
+        onPointerEnter={prepareNeighbours}
+        onFocus={prepareNeighbours}
+      >
         <CarouselButton label="Photo précédente" icon="chevronLeft" onClick={() => go(current - 1)} />
         {slides.map((slide, index) => (
           <button

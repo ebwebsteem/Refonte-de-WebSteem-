@@ -15,6 +15,12 @@ const nextConfig: NextConfig = {
   partialPrefetching: true,
 
   images: {
+    // Sobriété : AVIF (le plus léger) puis WebP selon ce que le navigateur
+    // accepte. Next convertit les photos à la volée et garde le résultat en cache.
+    formats: ["image/avif", "image/webp"],
+    // Qualité 60 au lieu de 75 : 20 à 30 % de poids en moins, différence
+    // invisible à l'œil sur des photos. Toute <Image> est ramenée à cette valeur.
+    qualities: [60],
     // <Image> de Next.js refuse les images externes non déclarées ici :
     // on autorise uniquement le dossier des médias uploadés dans Strapi.
     remotePatterns: [

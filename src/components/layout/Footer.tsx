@@ -193,7 +193,8 @@ function PartnersCard() {
           <p className="text-xs leading-[18px] font-semibold tracking-[0.08em] text-navy uppercase">{group.title}</p>
           <div className="flex flex-wrap items-center gap-x-7 gap-y-5">
             {group.logos.map((logo) => (
-              <Image key={logo.src} src={logo.src} alt={logo.alt} width={logo.w} height={logo.h} className={`w-auto ${logo.className}`} />
+              // sizes : les logos font au plus ~150 px de large (sinon Next envoie du 640 px)
+              <Image key={logo.src} src={logo.src} alt={logo.alt} width={logo.w} height={logo.h} sizes="150px" className={`w-auto ${logo.className}`} />
             ))}
           </div>
         </div>
@@ -201,7 +202,7 @@ function PartnersCard() {
       <div className="flex flex-col gap-3.5">
         <p className="text-xs leading-[18px] font-semibold tracking-[0.08em] text-navy uppercase">Avis clients</p>
         <div className="flex items-center gap-3.5">
-          <Image src="/brand/partenaires/verifsites.png" alt="Verif Sites – note de 5 sur 5" width={226} height={226} className="h-[72px] w-auto" />
+          <Image src="/brand/partenaires/verifsites.png" alt="Verif Sites – note de 5 sur 5" width={226} height={226} sizes="72px" className="h-[72px] w-auto" />
           <p className="text-sm leading-[21px]">
             <strong className="block text-[22px] leading-7 text-navy">5/5</strong>
             Avis clients vérifiés
