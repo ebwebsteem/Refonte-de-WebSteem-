@@ -27,7 +27,7 @@ import { Icon } from "@/components/ui/Icon";
 import { initialContactState, type ContactField } from "./formState";
 
 const fieldClasses =
-  "w-full rounded-lg bg-cream px-3.5 text-base text-ink placeholder:text-muted lg:px-4 shadow-[inset_0_0_0_1.5px_var(--color-navy)] aria-invalid:shadow-[inset_0_0_0_2px_var(--color-rust)]";
+  "w-full rounded-lg bg-white px-3.5 text-base text-ink placeholder:text-muted lg:px-4 shadow-[inset_0_0_0_1.5px_var(--color-navy)] aria-invalid:shadow-[inset_0_0_0_2px_var(--color-rust)]";
 
 export function ContactForm({ firstName }: { firstName: string }) {
   const [state, formAction, pending] = useActionState(sendContactMessage, initialContactState);
