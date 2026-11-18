@@ -50,7 +50,7 @@ export function ContactForm({ firstName }: { firstName: string }) {
       action={formAction}
       noValidate
       aria-labelledby="form-titre"
-      className="flex flex-col gap-4.5 lg:gap-6 lg:rounded-[14px] lg:bg-cream lg:px-12 lg:py-10 lg:shadow-[0_0_0_1px_#E9E8EC,0_16px_40px_rgba(29,54,66,0.08)]"
+      className="flex flex-col gap-4.5 lg:gap-6 lg:rounded-[14px] lg:bg-white lg:px-12 lg:py-10 lg:shadow-[0_0_0_1px_#E9E8EC,0_16px_40px_rgba(29,54,66,0.08)]"
     >
       <h2 id="form-titre" className="text-2xl leading-8 font-semibold text-navy lg:text-[28px] lg:leading-9">
         Parlez-nous de vous
@@ -58,13 +58,13 @@ export function ContactForm({ firstName }: { firstName: string }) {
 
       {/* Zone d'annonce : succès (role="status", poli) ou erreurs (role="alert", prioritaire) */}
       {state.status === "success" && (
-        <p role="status" className="flex items-start gap-3 rounded-xl bg-white p-4 font-semibold text-navy">
+        <p role="status" className="flex items-start gap-3 rounded-xl bg-white p-4 font-semibold text-navy lg:bg-cream">
           <Icon name="check" className="mt-0.5 text-navy" />
           {state.message}
         </p>
       )}
       {state.status === "error" && (
-        <p role="alert" className="rounded-xl bg-white p-4 font-semibold text-rust">
+        <p role="alert" className="rounded-xl bg-white p-4 font-semibold text-rust lg:bg-cream">
           {state.message}
         </p>
       )}
@@ -135,7 +135,7 @@ export function ContactForm({ firstName }: { firstName: string }) {
             "Vous recevez un devis gratuit, sans engagement.",
           ].map((step, index) => (
             <li key={step} className="flex items-start gap-3">
-              <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-cream font-semibold text-navy lg:bg-white">
+              <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-cream font-semibold text-navy">
                 {index + 1}
               </span>
               <span className="pt-1">{step}</span>
